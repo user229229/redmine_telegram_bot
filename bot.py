@@ -26,12 +26,15 @@ I am here to register forwarded messages as new issues. \
 # Handle all other messages with content_type 'text' (content_types defaults to ['text'])
 @bot.message_handler(func=lambda message: True)
 def echo_message(message):
-    IssueID = RedmineNewIssue(message.forward_from.username, message.text, message.text)
-    if IssueID != 0:
-        IssueURL =  RedmineURL + '/issues/'+ str(IssueID)
-        bot.reply_to(message, IssueURL)
+    if message.forward_from:
+        IssueID = RedmineNewIssue(message.forward_from.username, message.text, message.text)
+        if IssueID != 0:
+            IssueURL =  RedmineURL + '/issues/'+ str(IssueID)
+            bot.reply_to(message, IssueURL)
+        else:
+            bot.reply_to(message, "Задача не создана")
     else:
-        bot.reply_to(message, "-")
+        bot.reply_to(message, "Необходимо переслать сообщение от другого пользователя")            
 
 
 bot.infinity_polling()
