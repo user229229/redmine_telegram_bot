@@ -22,6 +22,9 @@ ADD . /codebase
 WORKDIR /codebase
 
 RUN pip3 install -r requirements.txt
+RUN pip3 install pyTelegramBotAPI python-redmine
+
+
 RUN chmod +x /codebase/bot.py
 
 CMD python3 /codebase/bot.py;
