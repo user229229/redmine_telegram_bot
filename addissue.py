@@ -5,6 +5,8 @@ def RedmineNewIssue(TelegramID, Subject, Description):
     ProjectID = os.environ['PROJECT_ID']
     RedmineURL = os.environ['REDMINE_URL']
     RedmineKey = os.environ['REDMINE_KEY']
+
+
     redmine = Redmine(RedmineURL, key=RedmineKey)
 
     # Get user by Telegram ID
