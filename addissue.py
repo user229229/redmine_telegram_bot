@@ -8,7 +8,7 @@ def RedmineNewIssue(TelegramID, Subject, Description):
     redmine = Redmine(RedmineURL, key=RedmineKey)
 
     # Get user by Telegram ID
-    users = redmine.user.filter(status=1, limit=1000)
+    users = redmine.user.filter(status=1)
     userlist = list(users)
     userfoundlist = [x for x in userlist if x.custom_fields[1].value == TelegramID]
 
